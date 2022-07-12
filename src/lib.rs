@@ -1,4 +1,4 @@
-use async_std::io::File;
+use async_std::fs::File;
 use stretto::{AsyncCache, CacheError, TransparentKeyBuilder};
 
 pub struct FileCache {}
