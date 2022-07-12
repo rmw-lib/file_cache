@@ -12,6 +12,7 @@ description = "cache the file open handle"
 ahash = "0.7.6"
 file_open_limit = "0.0.3"
 rlimit = "0.8.3"
+stretto = { version = "0.5.1", features = ["async"] }
 
 [dev-dependencies]
 anyhow = "1.0.58"

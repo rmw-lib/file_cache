@@ -5,3 +5,9 @@ impl FileCache {
     Self {}
   }
 }
+
+impl Default for FileCache {
+  fn default() -> Self {
+    Self::new()
+  }
+}
