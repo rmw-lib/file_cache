@@ -1,4 +1,4 @@
-use std::hash::{Hash, Hasher};
+use std::hash::Hash;
 
 use ahash::AHasher;
 use async_std::file::File;
