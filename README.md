@@ -1,6 +1,6 @@
-# file_handle_cache
+# file_cache
 
-get the file open limit ( windows / mac / linux / freebsd )
+file open handle cache
 
 use example
 
