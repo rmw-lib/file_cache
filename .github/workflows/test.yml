@@ -1,37 +1,49 @@
-test:
-runs-on: '${{ matrix.os }}'
-strategy:
-  matrix:
-    include:
-      - os: macos-latest
-      - os: ubuntu-latest
-      - os: windows-latest
-steps:
-  - uses: actions/checkout@v2
-  - uses: actions/cache@v1
-    with:
-      path: ~/.cargo/registry
-      key: '${{ runner.os }}-cargo-registry-${{ hashFiles(''**/Cargo.lock'') }}'
-  - uses: actions/cache@v1
-    with:
-      path: ~/.cargo/git
-      key: '${{ runner.os }}-cargo-index-${{ hashFiles(''**/Cargo.lock'') }}'
-  - uses: actions/cache@v1
-    with:
-      path: target
-      key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+on:
+  workflow_dispatch:
+  #schedule:
+  #  - cron: '59 0 * * *'
+  push:
+    branches: [ master ]
+    tags:
+      - v*
+  pull_request:
+    branches: [ master ]
 
-  - name: Install latest nightly
-    uses: actions-rs/toolchain@v1
-    with:
-        toolchain: nightly
-        override: true
+jobs:
+  test:
+    runs-on: '${{ matrix.os }}'
+    strategy:
+      matrix:
+        include:
+          - os: macos-latest
+          - os: ubuntu-latest
+          - os: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/registry
+          key: '${{ runner.os }}-cargo-registry-${{ hashFiles(''**/Cargo.lock'') }}'
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/git
+          key: '${{ runner.os }}-cargo-index-${{ hashFiles(''**/Cargo.lock'') }}'
+      - uses: actions/cache@v1
+        with:
+          path: target
+          key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
 
-  - uses: actions-rs/cargo@v1
-    with:
-      command: test
+      - name: Install latest nightly
+        uses: actions-rs/toolchain@v1
+        with:
+            toolchain: nightly
+            override: true
 
-  - uses: actions-rs/cargo@v1
-    with:
-      command: run
-      args: "--example main"
+      - uses: actions-rs/cargo@v1
+        with:
+          command: test
+
+      - uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: "--example main"
