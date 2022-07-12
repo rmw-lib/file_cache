@@ -1,7 +1,6 @@
 use anyhow::Result;
-use file_limit;
 
 fn main() -> Result<()> {
-    dbg!(file_limit::get()?);
-    Ok(())
+  dbg!(file_open_limit::get()?);
+  Ok(())
 }
