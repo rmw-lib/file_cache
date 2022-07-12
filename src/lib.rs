@@ -23,7 +23,7 @@ impl FileCache {
     }
     let file = File::open(Path::new(unsafe { std::str::from_utf8_unchecked(&path) })).await?;
     self.cache.insert(path.clone(), file, 1).await;
-    self.cache.wait().await.unwrap();
+    err::log!(self.cache.wait().await);
     Ok(self.cache.get_mut(&path).unwrap())
   }
 }

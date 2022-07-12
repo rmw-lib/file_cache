@@ -1,6 +1,6 @@
 [package]
 name = "file_cache"
-version = "0.0.2"
+version = "0.0.3"
 edition = "2021"
 license = "Apache-2.0"
 repository = "https://github.com/rmw-lib/file_cache"
