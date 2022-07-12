@@ -1,5 +1,7 @@
-use async_std::fs::File;
-use stretto::{AsyncCache, CacheError, TransparentKeyBuilder};
+use std::ffi::OsStr;
+
+use async_std::{fs::File, path::Path};
+use stretto::{AsyncCache, CacheError, ValueRefMut};
 
 #[derive(Clone)]
 pub struct FileCache {
@@ -14,5 +16,14 @@ impl FileCache {
     Ok(Self {
       cache: AsyncCache::new(num_counters, open_limit as _, async_std::task::spawn)?,
     })
+  }
+
+  pub async fn open(&mut self, path: Box<[u8]>) -> async_std::io::Result<ValueRefMut<File>> {
+    if let Some(exist) = self.cache.get_mut(&path) {
+      return Ok(exist);
+    }
+    let file = File::open(Path::new(unsafe { std::str::from_utf8_unchecked(&path) })).await?;
+    self.cache.insert(path.clone(), file, 1).await;
+    Ok(self.cache.get_mut(&path).unwrap())
   }
 }
