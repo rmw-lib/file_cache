@@ -1,4 +1,4 @@
-# file_open_limit
+# file_handle_cache
 
 get the file open limit ( windows / mac / linux / freebsd )
 
@@ -8,7 +8,7 @@ use example
 use anyhow::Result;
 
 fn main() -> Result<()> {
-    dbg!(file_open_limit::get()?);
+    dbg!(file_handle_cache::get()?);
     Ok(())
 }
 ```

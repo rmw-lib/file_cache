@@ -1,11 +1,11 @@
 [package]
-name = "file_open_limit"
-version = "0.0.3"
+name = "file_handle_cache"
+version = "0.0.0"
 edition = "2021"
 license = "Apache-2.0"
-repository = "https://github.com/rmw-lib/file_open_limit"
+repository = "https://github.com/rmw-lib/file_handle_cache"
 readme = "README.md"
-description = "get the file open limit ( windows / mac / linux / freebsd )"
+description = "cache the file open handle"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]

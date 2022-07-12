@@ -1,6 +1,6 @@
 use anyhow::Result;
 
 fn main() -> Result<()> {
-  dbg!(file_open_limit::get()?);
+  dbg!(file_handle_cache::get()?);
   Ok(())
 }
