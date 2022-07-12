@@ -1,10 +1,7 @@
-#[cfg(not(target_os = "windows"))]
-pub fn get() -> Result<u64, std::io::Error> {
-  rlimit::increase_nofile_limit(u64::MAX)
-}
+pub struct FileCache {}
 
-#[cfg(target_os = "windows")]
-pub fn get() -> Result<u64, std::io::Error> {
-  rlimit::setmaxstdio(2048)?;
-  Ok(rlimit::getmaxstdio() as u64)
+impl FileCache {
+  pub fn new() -> Self {
+    Self {}
+  }
 }
