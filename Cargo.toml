@@ -1,6 +1,6 @@
 [package]
-name = "file_limit"
-version = "0.1.2"
+name = "file_open_limit"
+version = "0.0.1"
 edition = "2021"
 license = "Apache-2.0"
 repository = "https://github.com/rmw-lib/file_limit"
