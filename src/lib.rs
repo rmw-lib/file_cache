@@ -6,5 +6,5 @@ pub fn get() -> Result<u64, std::io::Error> {
 #[cfg(target_os = "windows")]
 pub fn get() -> Result<u64, std::io::Error> {
   rlimit::setmaxstdio(2048)?;
-  rlimit::getmaxstdio()
+  Ok(rlimit::getmaxstdio() as u64)
 }
