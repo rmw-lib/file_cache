@@ -1,9 +1,9 @@
 [package]
 name = "file_open_limit"
-version = "0.0.2"
+version = "0.0.3"
 edition = "2021"
 license = "Apache-2.0"
-repository = "https://github.com/rmw-lib/file_limit"
+repository = "https://github.com/rmw-lib/file_open_limit"
 readme = "README.md"
 description = "get the file open limit ( windows / mac / linux / freebsd )"
 
