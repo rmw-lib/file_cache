@@ -247,16 +247,15 @@ dependencies = [
  "anyhow",
  "async-std",
  "file_open_limit",
- "rlimit",
  "rmw_err",
  "stretto",
 ]
 
 [[package]]
 name = "file_open_limit"
-version = "0.0.3"
+version = "0.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dc2109d33cc19e906c7554df52f760ac7f52b21ee05e62e0f1752f0625dd31b3"
+checksum = "4e55662b9b9fe774dbb2db943564b50fe0066bafbd84cbf44f11b339c06aafa2"
 dependencies = [
  "rlimit",
 ]
