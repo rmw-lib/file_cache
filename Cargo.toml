@@ -11,9 +11,8 @@ description = "cache the file open handle"
 [dependencies]
 ahash = "0.7.6"
 async-std = "1.12.0"
-err = { version = "0.0.4", package = "rmw_err" }
-file_open_limit = "0.0.3"
-rlimit = "0.8.3"
+err = { version = "0.0.5", package = "rmw_err" }
+file_open_limit = "0.0.5"
 stretto = { version = "0.5.1", features = ["async"] }
 
 [dev-dependencies]

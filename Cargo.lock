@@ -606,9 +606,9 @@ dependencies = [
 
 [[package]]
 name = "rmw_err"
-version = "0.0.4"
+version = "0.0.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "697d9f6fdd46e3545bee1a4f15fb5258d51552a8c1d0d408d7edaaf6e347e611"
+checksum = "140e33a9c3c5d799f9bbd60e99dca26cff300bcfee82aff44636690f2cb9b0db"
 dependencies = [
  "log",
 ]

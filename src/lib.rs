@@ -19,8 +19,7 @@ pub struct FileCache {}
 
 impl FileCache {
   pub fn new() -> Result<Self, CacheError> {
-    let open_limit = err::ok!(file_open_limit::get()).unwrap() / 2 as usize;
-
+    let open_limit = err::ok!(file_open_limit::get()).unwrap() / 2;
     let num_counters = open_limit * 128;
     AsyncCache::new_with_key_builder(
       num_counters,
