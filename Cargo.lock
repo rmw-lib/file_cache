@@ -240,7 +240,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "file_handle_cache"
+name = "file_cache"
 version = "0.0.0"
 dependencies = [
  "anyhow",

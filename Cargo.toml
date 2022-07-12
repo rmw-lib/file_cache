@@ -1,9 +1,9 @@
 [package]
-name = "file_handle_cache"
+name = "file_cache"
 version = "0.0.0"
 edition = "2021"
 license = "Apache-2.0"
-repository = "https://github.com/rmw-lib/file_handle_cache"
+repository = "https://github.com/rmw-lib/file_cache"
 readme = "README.md"
 description = "cache the file open handle"
 
