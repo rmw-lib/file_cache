@@ -1,23 +1,32 @@
+use std::hash::{Hash, Hasher};
+
+use ahash::AHasher;
+use async_std::file::File;
+use stretto::{AsyncCache, CacheError, TransparentKeyBuilder};
+
+#[derive(Debug, Default)]
+struct Hasher(AHasher);
+
+impl<K: Hash + Eq + ?Sized> stretto::KeyBuilder<K> for Hasher {
+  fn hash_index(&self, key: &K) -> u64 {
+    let mut hasher = AHasher::default();
+    key.hash(hasher);
+    hasher.finish()
+  }
+}
+
 pub struct FileCache {}
 
 impl FileCache {
-  pub fn new_with_key_builder<SP, R>(
-    num_counters: usize,
-    max_cost: i64,
-    index: KH,
-    spawner: SP,
-  ) -> Result<Self, CacheError>
-  where
-    SP: Fn(BoxFuture<'static, ()>) -> R + Send + Sync + 'static + Copy,
-  {
-    let max_cost = err::ok!(file_open_limit::get()).unwrap();
+  pub fn new() -> Result<Self, CacheError> {
+    let open_limit = err::ok!(file_open_limit::get()).unwrap() / 2;
 
-    let num_counters = max_cost * 128;
-    AsyncCache::<u64, u64, TransparentKeyBuilder<_>>::new_with_key_builder(
-      100,
-      10,
-      TransparentKeyBuilder::<u64>::default(),
-      tokio::spawn,
+    let num_counters = open_limit * 128;
+    AsyncCache::new_with_key_builder(
+      num_counters,
+      open_limit,
+      Hasher::default(),
+      async_std::task::spawn,
     )
     .unwrap();
   }
