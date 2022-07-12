@@ -5,7 +5,7 @@ edition = "2021"
 license = "Apache-2.0"
 repository = "https://github.com/rmw-lib/file_cache"
 readme = "README.md"
-description = "cache the file open handle"
+description = "cache file open handle"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
