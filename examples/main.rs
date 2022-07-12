@@ -1,6 +1,6 @@
 use anyhow::Result;
 
 fn main() -> Result<()> {
-  dbg!(file_handle_cache::get()?);
+  let cache = file_handle_cache::FileCache::new(2048);
   Ok(())
 }
