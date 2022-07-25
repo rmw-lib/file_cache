@@ -16,7 +16,7 @@ impl FileCache {
     })
   }
 
-  pub async fn get(&mut self, path: impl AsRef<Path>) -> async_std::io::Result<ValueRefMut<File>> {
+  pub async fn get(&self, path: impl AsRef<Path>) -> async_std::io::Result<ValueRefMut<File>> {
     let path = Box::from(path.as_ref());
     if let Some(exist) = self.cache.get_mut(&path) {
       return Ok(exist);
