@@ -3,7 +3,7 @@ use stretto::{AsyncCache, CacheError, ValueRefMut};
 
 #[derive(Clone)]
 pub struct FileCache {
-  cache: AsyncCache<Box<[u8]>, File>,
+  cache: AsyncCache<Box<Path>, File>,
 }
 
 impl FileCache {
@@ -16,12 +16,12 @@ impl FileCache {
     })
   }
 
-  pub async fn get(&mut self, path: impl AsRef<[u8]>) -> async_std::io::Result<ValueRefMut<File>> {
+  pub async fn get(&mut self, path: impl AsRef<Path>) -> async_std::io::Result<ValueRefMut<File>> {
     let path = Box::from(path.as_ref());
     if let Some(exist) = self.cache.get_mut(&path) {
       return Ok(exist);
     }
-    let file = File::open(Path::new(unsafe { std::str::from_utf8_unchecked(&path) })).await?;
+    let file = File::open(&path).await?;
     self.cache.insert(path.clone(), file, 1).await;
     err::log!(self.cache.wait().await);
     Ok(self.cache.get_mut(&path).unwrap())
